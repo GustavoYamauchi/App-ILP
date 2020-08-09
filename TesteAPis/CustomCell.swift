@@ -13,10 +13,9 @@ class CustomCell: UITableViewCell {
     public var id : String!
     @IBOutlet weak var lblTitulo: UILabel!
     @IBOutlet weak var lblConteudo: UILabel!
-    
+    weak var atualizarDelegate: AtualizarDelegate?
 
     @IBAction func btnDeletar(_ sender: Any) {
-        print(self.id)
         var tarefa = Tarefa(id: self.id, titulo: self.lblTitulo.text!, conteudo: self.lblConteudo.text!)
         var request = URLRequest(url: URL(string: "http://127.0.0.1:8080/delete")!)
 
@@ -40,7 +39,7 @@ class CustomCell: UITableViewCell {
             do {
                 print(data)
                 DispatchQueue.main.async {
-                    //self.getTarefas()
+                    self.atualizarDelegate?.atualizar()
                 }
                 
             } catch let error as NSError {
@@ -50,4 +49,5 @@ class CustomCell: UITableViewCell {
         }
         task2.resume()
     }
+    
 }

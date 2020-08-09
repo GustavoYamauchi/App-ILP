@@ -9,7 +9,16 @@
 import UIKit
 import Foundation
 
+protocol AtualizarDelegate: class {
+    func atualizar()
+}
 
+extension ViewController: AtualizarDelegate{
+    func atualizar() {
+        getTarefas()
+        tableView.reloadData()
+    }
+}
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
@@ -79,6 +88,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             newCell.id = self.JSON[indexPath.row].id!
             newCell.lblTitulo?.text = self.JSON[indexPath.row].titulo
             newCell.lblConteudo?.text = self.JSON[indexPath.row].conteudo
+            newCell.atualizarDelegate = self
         }
         newCell.indentationWidth = 70
         
