@@ -29,7 +29,7 @@ class CustomCell: UITableViewCell {
             print("Failed to load: \(error.localizedDescription)")
         }
         
-        
+        //commit
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
         
